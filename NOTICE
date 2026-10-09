@@ -1,0 +1,34 @@
+Trigger Rally - D port
+======================
+
+This is a derivative work: a port to the D programming language of Trigger
+Rally (https://trigger-rally.sourceforge.net/), licensed under the GNU General
+Public License, version 2 or later. See COPYING.txt. The original license and
+all copyright notices are retained.
+
+Original copyright holders (from the source files of the C++ version):
+
+  Copyright (C) 2004-2006 Jasmine Langridge (Posit Interactive) and Richard Langridge
+  Copyright (C) 2015-2019 Andrei Bondor
+  Copyright (C) 2015 Onsemeliot
+  Copyright (C) 2017-2018 Emanuele Sorce
+  Copyright (C) 2020-2021 Martin Scherer
+  Copyright (C) 2006-2016 Various contributors (see doc/DATA_AUTHORS.txt)
+
+Game credits (from the original game):
+
+  Coding: Jasmine Langridge
+  Art & SFX: Richard Langridge
+  Contributors: Matze Braune (build system), Chuck Sites (stereo support),
+    Tim Douglas (Mac OS X porting), LavaPunk, Bernhard Kaindl, Liviu Andronic,
+    Ishmael Turner, Iwan 'qubodup' Gabovitch, Farrer, Andrei Bondor,
+    Nikolay Orlyuk, Emanuele Sorce, Martin Scherer, Eugene MC, Kirada
+  New levels: Tim Wintle, David Pagnier, Jared Buckner, Andreas Rosdal, Ivan,
+    Viktor Radnai, Pierre-Alexis, Bruno 'Fuddl' Kleinert, Agnius Vasiliauskas,
+    Matthias Keysermann, Marcio Bremm, Onsemeliot
+  Graphics: Alex, Roberto Diez Gonzalez
+  Thanks to Jonathan C. Hatfull and Simon Brown
+
+Authors and licenses of the individual data files (textures, sounds, models,
+maps) are listed in doc/DATA_AUTHORS.txt and apply to everything under data/.
+The JPEG decoder comes from the arsd-official package (Boost license).

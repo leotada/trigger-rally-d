@@ -1,3 +1,6 @@
+// Copyright (C) 2004-2006 Jasmine Langridge and contributors (see the NOTICE file)
+// Part of the D port of Trigger Rally.
+// License: GNU General Public License, version 2 or later (see COPYING.txt)
 /// Minimal hand-written SDL2 bindings, loaded at run time with dlopen.
 module bindings.sdl2;
 

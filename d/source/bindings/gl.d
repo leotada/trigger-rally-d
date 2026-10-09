@@ -1,3 +1,6 @@
+// Copyright (C) 2004-2006 Jasmine Langridge and contributors (see the NOTICE file)
+// Part of the D port of Trigger Rally.
+// License: GNU General Public License, version 2 or later (see COPYING.txt)
 /// Minimal hand-written legacy OpenGL bindings (functions resolved through SDL_GL_GetProcAddress).
 module bindings.gl;
 

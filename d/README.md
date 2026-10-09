@@ -18,3 +18,9 @@ PhysFS, tinyxml2, SDL_image, GLEW and ALUT are replaced by D modules
 
 The game data lives in `data/`; the user config and player profiles are stored in
 `~/.local/share/trigger-rally-team/trigger-rally/`.
+
+## License and credits
+
+Trigger Rally is free software under the GNU GPL v2 or later (see `COPYING.txt`).
+This port keeps the original license and credits: see `NOTICE` and
+`doc/DATA_AUTHORS.txt`. Original project: https://trigger-rally.sourceforge.net/

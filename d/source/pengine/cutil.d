@@ -1,3 +1,6 @@
+// Copyright (C) 2004-2006 Jasmine Langridge and contributors (see the NOTICE file)
+// Part of the D port of Trigger Rally.
+// License: GNU General Public License, version 2 or later (see COPYING.txt)
 // cutil [pengine]
 //
 // Thin wrappers over the C library so that lenient C-style parsing (`atof`,

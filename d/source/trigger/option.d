@@ -1,3 +1,6 @@
+// Copyright (C) 2021 Martin Scherer
+// Based on the original Trigger Rally source; see the NOTICE file for all credits.
+// License: GNU General Public License, version 2 or later (see COPYING.txt)
 // option [trigger]
 //
 // Options menu.
