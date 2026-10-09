@@ -1,0 +1,243 @@
+==========================
+How to build Trigger Rally
+==========================
+
+1. Linux users
+2. Packaging for Linux
+3. Windows users
+4. Packaging for Windows
+A. Appendix
+   A0. Developer aids
+   A1. List of software used to build Trigger Rally (Windows)
+
+--------------
+1. Linux users
+--------------
+
+To build Trigger Rally, your system must satisfy the following requirements:
+
+* have a C++ compiler (preferably g++ v.4.9+) and related binutils
+* have the GNU Make utility
+* have these development libraries installed:
+
+  LIBRARY NAME          OFFICIAL DOWNLOAD LINK
+  --------------------------------------------------------------------
+  GL                    N/A
+  GLEW                  http://sourceforge.net/projects/glew/files/glew/
+  OpenAL                N/A (?) http://openal-soft.org/#download
+  ALUT                  N/A (?) https://github.com/vancegroup/freealut/releases
+  PhysFS                http://icculus.org/physfs/downloads/
+  SDL2                  https://www.libsdl.org/download-2.0.php
+  SDL2_image            https://www.libsdl.org/projects/SDL_image/
+  TinyXML-2             https://github.com/leethomason/tinyxml2/releases
+  --------------------------------------------------------------------
+
+  LIBRARY NAME      DEB DISTRO              RPM DISTRO
+  ----------------------------------------------------
+  GL                libgl1-mesa-dev         mesa-libGL-devel
+  GLEW              libglew-dev             glew-devel
+  OpenAL            libopenal-dev           openal-soft-devel
+  ALUT              libalut-dev             freealut-devel
+  PhysFS            libphysfs-dev           physfs-devel
+  SDL2              libsdl2-dev             SDL2-devel + SDL2-static
+  SDL2_image        libsdl2-image-dev       SDL2_image-devel
+  TinyXML-2         libtinyxml2-dev         tinyxml2-devel
+  ----------------------------------------------------
+
+To build Trigger Rally you must run "make" in the "src" directory where
+"GNUmakefile" is located:
+
+  $ cd src/
+  $ make
+  $ cd ../bin/
+  $ ./trigger-rally
+
+To install Trigger Rally you need to get superuser privileges and run "make install".
+Note that installation is not required to play the game. The game can run as soon as
+it finished building.
+
+  $ su
+  Password: 
+  # make install
+  # exit
+  logout
+  $ trigger-rally
+
+----------------------
+2. Packaging for Linux
+----------------------
+
+If you're an old packager tasked with keeping the software repository of a major Linux
+distribution up-to-date then I really have no business telling you how to do your job.
+
+If you're a novice packager you might want to look into staged installs, which the
+provided GNUmakefile supports in accordance to the GNU guidelines (the DESTDIR variable):
+
+  $ cd src/
+  $ DESTDIR="/home/UserName/TR_staged" make install
+
+Note that the "install" target will build Trigger Rally first, if needed.
+
+Also note that you should probably set the OPTIMS variable to more conservative values,
+to ensure that users of older hardware can still run the game.
+As an example, the official 32-bit binary release for Windows is built with:
+
+  $ OPTIMS="-march=i686 -mtune=generic -O2" make build
+
+See the GCC documentation for the currently supported x86 options:
+
+  https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html
+
+The "dist" target is also supported, and it creates a zipped tarball of the
+Trigger Rally directory and then calculates the archive's MD5 sum.
+
+Finally be sure to check the Trigger Rally default configuration file at:
+
+  bin/trigger-rally.config.defs
+
+and edit the default data paths accordingly. And yes this config file needs to stay
+in the binary folder, for compatibility with the Windows build and for code simplicity.
+
+----------------
+3. Windows users
+----------------
+
+Building for Windows is supported officially with GNU Makefiles and Shell scripts.
+You will need to download and install MSYS2, CMake and the TR build scripts,
+then download the development libraries and finally run the TR build scripts:
+
+  SOFTWARE NAME                 OFFICIAL DOWNLOAD LINK
+  ----------------------------------------------------
+  MSYS2                         https://www.msys2.org/
+  CMake                         https://cmake.org/download/
+  TR Build Scripts              https://sourceforge.net/projects/trigger-rally/files/devkit/build_scripts/
+  ----------------------------------------------------
+
+Of course, you're expected to read the "build_readme.txt" file provided with the build scripts.
+
+  LIBRARY NAME                  OFFICIAL DOWNLOAD LINK
+  ----------------------------------------------------
+  GLEW                          http://sourceforge.net/projects/glew/files/glew/
+  PhysFS                        http://icculus.org/physfs/downloads/
+  SDL2                          https://www.libsdl.org/download-2.0.php
+  SDL2_image                    https://www.libsdl.org/projects/SDL_image/
+  TinyXML-2                     https://github.com/leethomason/tinyxml2/releases
+  libjpeg                       http://ijg.org/
+  libpng                        http://libpng.org/pub/png/libpng.html
+  zlib                          http://zlib.net/
+  FMOD Studio API 1.06.XX       http://www.fmod.org/browse-studio-api/#FMODStudio106
+  ----------------------------------------------------
+
+If you're using Visual Studio you're on your own for the time being, sorry.
+That said, it shouldn't be too difficult to build the aforementioned dev libraries after
+you read their ReadMe files (some may provide Solution files, while others may support NMAKE)
+and then create a Trigger Rally C++11 Solution in which you include all the source files
+from the "trigger-rally-VERSION\src\" folder.
+
+------------------------
+4. Packaging for Windows
+------------------------
+
+Refer to the Trigger Rally Discussion forums if you have questions about packaging
+the game for Windows. At the time of this writing, NSIS is used for the 32-bit build and
+the WiX Toolset is planned to be used for future 64-bit builds:
+
+    https://sourceforge.net/p/trigger-rally/discussion/
+    https://sourceforge.net/projects/trigger-rally/files/devkit/TR_NSIS/
+    https://sourceforge.net/projects/trigger-rally/files/devkit/TR_WiX/
+
+##################
+A0. Developer aids
+##################
+
+The release version of Trigger Rally suppresses terrain information and codriver checkpoint visuals.
+Developers can turn these on by defining the INDEVEL macro before building.
+
+  $ cd trigger-rally-0.6.6.1/src/
+  $ OPTIMS="-DINDEVEL" make
+
+##########################################################
+A1. List of software used to build Trigger Rally (Windows)
+##########################################################
+
+---------------------------------
+Trigger Rally 0.6.6.1 Win32/Win64
+---------------------------------
+
+  SOFTWARE                      VERSION
+  -------------------------------------
+  MSYS2                         20180531
+  GCC                           8.2.1 (64-bit), 7.4.0 (32-bit)
+  CMake                         3.13.4
+  NSIS                          3.04
+  GLEW                          2.1.0
+  SDL2                          2.0.9
+  SDL2_image                    2.0.4
+  TinyXML-2                     7.0.1
+  libjpeg                       9c
+  libpng                        1.6.36
+  PhysFS                        3.0.1
+  zlib                          1.2.11
+  FMOD Studio API Windows       1.06.20
+  -------------------------------------
+
+-------------------------------
+Trigger Rally 0.6.5 Win32/Win64
+-------------------------------
+
+  SOFTWARE                      VERSION
+  -------------------------------------
+  MSYS2                         20160205
+  TDM-GCC                       5.1.0
+  CMake                         3.6.1
+  NSIS                          3.0
+  WiX Toolset                   3.10
+  GLEW                          1.13.0
+  SDL2                          2.0.5
+  SDL2_image                    2.0.1
+  libjpeg                       9b
+  libpng                        1.6.26
+  PhysFS                        2.0.3
+  zlib                          1.2.8
+  FMOD Studio API Windows       1.06.20
+  -------------------------------------
+
+-------------------------
+Trigger Rally 0.6.4 Win32
+-------------------------
+
+  SOFTWARE                      VERSION
+  -------------------------------------
+  Orwell Dev-C++                5.11
+  MinGW/MSYS                    N/A
+  CMake                         3.4.3
+  NSIS                          2.51
+  GLEW                          1.13.0
+  SDL                           1.2.15
+  SDL_image                     1.2.12
+  libjpeg                       9b
+  libpng                        1.6.21
+  PhysFS                        2.0.3
+  zlib                          1.2.8
+  FMOD Studio API Windows       1.06.20
+  -------------------------------------
+
+-------------------------
+Trigger Rally 0.6.3 Win32
+-------------------------
+
+  SOFTWARE                      VERSION
+  -------------------------------------
+  Orwell Dev-C++                5.11
+  MinGW/MSYS                    N/A
+  CMake                         3.2.2
+  NSIS                          2.46
+  GLEW                          1.12.0
+  SDL                           1.2.15
+  SDL_image                     1.2.12
+  libjpeg                       9a
+  libpng                        1.6.17
+  PhysFS                        2.0.3
+  zlib                          1.2.8
+  FMOD Studio API Windows       1.06.02
+  -------------------------------------

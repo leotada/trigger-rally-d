@@ -1,0 +1,16 @@
+name "trigger-rally-d"
+description "Trigger Rally, a rally racing game - port to the D programming language (GC-based)"
+authors "Original authors: see ../doc and ../data/DATA_AUTHORS.txt"
+license "GPL-2.0-or-later"
+targetType "executable"
+targetName "trigger-rally-d"
+targetPath "../bin"
+sourcePaths "source"
+importPaths "source"
+dependency "arsd-official:jpeg" version="12.1.0"
+dependency "arsd-official:color_base" version="12.1.0"
+libs "dl"
+versions "UNIX"
+buildType "release" {
+    buildOptions "releaseMode" "optimize" "inline"
+}

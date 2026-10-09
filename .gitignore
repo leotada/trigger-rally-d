@@ -1,0 +1,8 @@
+.dub/
+*.o
+*.a
+bin/trigger-rally-d
+d/.dub/
+gc-*.csv
+gc-*.txt
+src/
